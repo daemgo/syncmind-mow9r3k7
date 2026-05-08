@@ -1,0 +1,508 @@
+{
+  "currentVersion": "v0.1",
+  "status": "draft",
+  "versions": [],
+  "current": {
+    "salesInput": {
+      "salesPerson": "",
+      "lastUpdated": "2026-05-08",
+      "overallAssessment": {
+        "customerIntent": "从档案推演，企业有数字化转型意向，但尚未明确启动",
+        "projectUrgency": "中等，6-12个月窗口期，竞争对手压力促使决策",
+        "budgetSituation": "成本敏感型，小微规模，千万元级营收",
+        "competitionStatus": "本地中小企业，无全国知名度，面临更大厂商竞争压力",
+        "winProbability": "待评估，需通过拜访验证需求真实性",
+        "keyObstacles": ["老板个人判断主导，专业论证不足", "成本敏感，对投资回报要求高", "无现有数字化基础，人员接受能力未知"],
+        "confidenceLevel": "低"
+      },
+      "keyPersons": [
+        { "name": "（法人/创始人）", "title": "执行董事兼总经理", "role": "最终决策者" }
+      ],
+      "realNeeds": {
+        "explicitNeeds": [],
+        "implicitNeeds": [
+          "设备稼动率监控，实时掌握设备运行状态",
+          "订单进度可视化，减少客户询单沟通成本",
+          "镀膜工艺参数记录，支持客诉追溯",
+          "订单级成本核算，清晰呈现真实利润率"
+        ],
+        "suspectedNeeds": [
+          "多设备统一管理看板",
+          "靶材/气体等辅材库存管理",
+          "与现有简易系统的数据对接"
+        ]
+      },
+      "decisionFactors": {
+        "primaryFactor": "设备稳定性与镀膜效果（生产导向）",
+        "secondaryFactors": ["投资回报周期", "操作便捷性", "服务响应速度"],
+        "dealBreakers": ["影响生产连续性", "操作复杂增加员工负担", "价格过高超出预算"]
+      },
+      "notes": "",
+      "concerns": [],
+      "suggestions": []
+    },
+    "sources": {
+      "meetings": [],
+      "documents": [],
+      "communications": [],
+      "observations": []
+    },
+    "needs": [
+      {
+        "id": "REQ-001",
+        "category": "functional",
+        "title": "订单排程与进度可视化",
+        "description": "将真空镀膜订单进行数字化排程，实时显示各批次生产进度，支持移动端查询，减少客户询单时的沟通成本。",
+        "priority": "must",
+        "confidence": "low",
+        "source": {
+          "type": "profile-inference",
+          "detail": "从档案痛点'订单依赖人工排程，进度不透明'推演",
+          "raw": null
+        },
+        "status": "active",
+        "module": "生产管理",
+        "relatedPainPoints": ["生产管理 - 订单进度不透明、客户询单无法给出准确交期"],
+        "firstVersion": "v0.1",
+        "lastUpdated": "v0.1",
+        "history": []
+      },
+      {
+        "id": "REQ-002",
+        "category": "functional",
+        "title": "工艺参数记录与追溯",
+        "description": "记录镀膜过程中的关键工艺参数（温度、真空度、镀速、靶材批次等），出现客诉时可追溯当时的设备状态和工艺设定。",
+        "priority": "must",
+        "confidence": "low",
+        "source": {
+          "type": "profile-inference",
+          "detail": "从档案痛点'工艺参数未系统化管理，出现客诉难以追溯'推演",
+          "raw": null
+        },
+        "status": "active",
+        "module": "质量管理",
+        "relatedPainPoints": ["质量管理 - 工艺参数未系统化管理，客诉难以追溯"],
+        "firstVersion": "v0.1",
+        "lastUpdated": "v0.1",
+        "history": []
+      },
+      {
+        "id": "REQ-003",
+        "category": "functional",
+        "title": "设备稼动率监控",
+        "description": "实时采集真空泵组等关键设备的运行状态，计算OEE（设备综合效率），支持故障预警和计划外停机告警。",
+        "priority": "must",
+        "confidence": "low",
+        "source": {
+          "type": "profile-inference",
+          "detail": "从档案痛点'缺乏预防性维护机制，OEE偏低(60-70%)'推演",
+          "raw": null
+        },
+        "status": "active",
+        "module": "设备管理",
+        "relatedPainPoints": ["设备管理 - 缺乏预防性维护机制，OEE偏低"],
+        "firstVersion": "v0.1",
+        "lastUpdated": "v0.1",
+        "history": []
+      },
+      {
+        "id": "REQ-004",
+        "category": "functional",
+        "title": "订单级成本核算",
+        "description": "按订单批次核算电耗、靶材、工时等成本，清楚呈现每批次/每类产品的真实利润率，为差异化定价和客户筛选提供数据支撑。",
+        "priority": "should",
+        "confidence": "low",
+        "source": {
+          "type": "profile-inference",
+          "detail": "从档案痛点'单台设备成本无法精细化分摊，报价靠经验'推演",
+          "raw": null
+        },
+        "status": "active",
+        "module": "成本管理",
+        "relatedPainPoints": ["成本核算 - 成本无法精细化分摊，真实利润处于黑箱状态"],
+        "firstVersion": "v0.1",
+        "lastUpdated": "v0.1",
+        "history": []
+      },
+      {
+        "id": "REQ-005",
+        "category": "functional",
+        "title": "辅材库存管理",
+        "description": "管理靶材、气体、辅材的出入库记录，支持库存预警（低于安全库存自动提醒），减少账实不符和缺料导致的批次延误。",
+        "priority": "could",
+        "confidence": "low",
+        "source": {
+          "type": "profile-inference",
+          "detail": "从档案痛点'靶材、气体、辅材库存靠人工记录，账实不符'推演",
+          "raw": null
+        },
+        "status": "active",
+        "module": "库存管理",
+        "relatedPainPoints": ["库存管理 - 靶材、气体、辅材库存靠人工记录，账实不符时有发生"],
+        "firstVersion": "v0.1",
+        "lastUpdated": "v0.1",
+        "history": []
+      },
+      {
+        "id": "REQ-006",
+        "category": "functional",
+        "title": "客户进度查询门户",
+        "description": "为下游客户提供Web/小程序入口，输入订单号即可查看当前生产进度、预计交期，增强客户信任度，减少内部询单工作量。",
+        "priority": "should",
+        "confidence": "low",
+        "source": {
+          "type": "profile-inference",
+          "detail": "从档案痛点'订单进度不透明，客户询单时无法给出准确交期'和机会'减少客户询单沟通成本'推演",
+          "raw": null
+        },
+        "status": "active",
+        "module": "客户管理",
+        "relatedPainPoints": ["生产管理 - 订单进度不透明"],
+        "firstVersion": "v0.1",
+        "lastUpdated": "v0.1",
+        "history": []
+      },
+      {
+        "id": "REQ-007",
+        "category": "technical",
+        "title": "多设备数据采集与联网",
+        "description": "支持罗茨泵、旋片泵、分子泵等不同类型真空设备的PLC/传感器数据采集，统一汇聚到云端或本地服务器。",
+        "priority": "must",
+        "confidence": "low",
+        "source": {
+          "type": "industry-pattern",
+          "detail": "真空镀膜设备行业通用需求，需对接多种真空泵和控制柜",
+          "raw": null
+        },
+        "status": "active",
+        "module": "设备管理",
+        "relatedPainPoints": ["设备管理 - 缺乏预防性维护机制"],
+        "firstVersion": "v0.1",
+        "lastUpdated": "v0.1",
+        "history": []
+      },
+      {
+        "id": "REQ-008",
+        "category": "functional",
+        "title": "镀膜工艺知识库",
+        "description": "将老师傅的调试经验数字化，记录不同材质、不同产品规格对应的推荐工艺参数组合，降低对特定员工的依赖。",
+        "priority": "should",
+        "confidence": "low",
+        "source": {
+          "type": "profile-inference",
+          "detail": "从档案机会'将老师傅经验数字化、标准化，降低对特定员工的依赖'推演",
+          "raw": null
+        },
+        "status": "active",
+        "module": "质量管理",
+        "relatedPainPoints": ["质量管理 - 镀膜质量依赖师傅经验"],
+        "firstVersion": "v0.1",
+        "lastUpdated": "v0.1",
+        "history": []
+      },
+      {
+        "id": "REQ-009",
+        "category": "non-functional",
+        "title": "SaaS云端部署优先",
+        "description": "考虑到小微企业资金约束，优先提供云端SaaS版本，按年付费，降低初期投入门槛；支持分期付款或按效果付费。",
+        "priority": "should",
+        "confidence": "low",
+        "source": {
+          "type": "profile-inference",
+          "detail": "从档案策略'提供云端SaaS版本降低初期投入门槛，强调按效果付费或分期付款'推演",
+          "raw": null
+        },
+        "status": "active",
+        "module": "部署方式",
+        "relatedPainPoints": ["成本敏感型，小微规模"],
+        "firstVersion": "v0.1",
+        "lastUpdated": "v0.1",
+        "history": []
+      },
+      {
+        "id": "REQ-010",
+        "category": "functional",
+        "title": "生产数据报表与统计",
+        "description": "按日/周/月汇总生产数据：订单完成数、合格率、设备稼动率、成本分析，支持导出Excel，供管理层决策参考。",
+        "priority": "could",
+        "confidence": "low",
+        "source": {
+          "type": "industry-pattern",
+          "detail": "制造业通用需求，小微企业通常以Excel为主要分析工具",
+          "raw": null
+        },
+        "status": "active",
+        "module": "数据分析",
+        "relatedPainPoints": ["成本核算 - 成本无法精细化分摊"],
+        "firstVersion": "v0.1",
+        "lastUpdated": "v0.1",
+        "history": []
+      }
+    ],
+    "users": [
+      {
+        "role": "老板/总经理",
+        "description": "1人，最终决策者，关注整体生产状况和成本利润",
+        "mainTasks": ["查看生产看板和报表", "审批订单和报价", "监控设备运行状态"]
+      },
+      {
+        "role": "技术负责人",
+        "description": "1-2人，负责设备调试和工艺参数管理",
+        "mainTasks": ["录入和调整工艺参数", "查看设备状态和告警", "处理客诉追溯查询"]
+      },
+      {
+        "role": "车间操作员",
+        "description": "若干人，直接使用系统记录生产数据",
+        "mainTasks": ["接收订单任务", "记录生产进度", "扫码/录入批次信息"]
+      },
+      {
+        "role": "采购/仓管",
+        "description": "1人，负责辅材采购和库存管理",
+        "mainTasks": ["管理靶材等辅材库存", "提交采购申请", "查看库存预警"]
+      }
+    ],
+    "scope": {
+      "inScope": [
+        "真空镀膜设备稼动率监控",
+        "订单排程与进度管理",
+        "工艺参数记录与追溯",
+        "订单级成本核算",
+        "辅材库存管理",
+        "PC端Web管理后台 + 移动端查看",
+        "云端SaaS部署"
+      ],
+      "outOfScope": [
+        "CAD/CAE工艺设计",
+        "ERP财务模块",
+        "人力资源管理",
+        "多工厂/多租户架构",
+        "私有化本地部署（除非客户明确要求）"
+      ],
+      "futureScope": [
+        "AI工艺参数推荐",
+        "供应商协同平台",
+        "与客户ERP系统对接",
+        "设备预测性维护"
+      ],
+      "phases": [
+        {
+          "phase": "P1",
+          "title": "基础生产管理",
+          "description": "订单管理 + 设备监控 + 工艺记录",
+          "duration": "2-3个月",
+          "goals": ["订单进度可视化", "设备状态实时可见", "工艺参数可追溯"]
+        },
+        {
+          "phase": "P2",
+          "title": "成本与质量管理",
+          "description": "成本核算 + SPC + 知识库",
+          "duration": "2-3个月",
+          "goals": ["订单级成本可见", "工艺标准化", "减少对老师傅依赖"]
+        },
+        {
+          "phase": "P3",
+          "title": "生态扩展",
+          "description": "客户门户 + 供应商协同",
+          "duration": "待定",
+          "goals": ["客户自助查询", "供应链协同"]
+        }
+      ],
+      "priorityMatrix": [
+        { "dimension1": "业务价值", "dimension2": "实施难度", "items": [
+          { "id": "REQ-001", "label": "订单进度可视化", "x": 4, "y": 2 },
+          { "id": "REQ-002", "label": "工艺参数追溯", "x": 4, "y": 3 },
+          { "id": "REQ-003", "label": "设备监控", "x": 4, "y": 2 }
+        ]}
+      ]
+    },
+    "constraints": {
+      "budget": {
+        "total": "",
+        "flexibility": "未知"
+      },
+      "timeline": {
+        "expectedStart": "",
+        "expectedGoLive": ""
+      }
+    },
+    "successCriteria": {
+      "operational": [
+        "客户询单响应时间缩短50%",
+        "工艺参数追溯覆盖率达到100%",
+        "设备计划外停机时间减少30%"
+      ],
+      "business": [
+        "订单准时交付率提升至90%以上",
+        "订单级成本核算覆盖80%以上订单",
+        "客户投诉响应时间缩短"
+      ]
+    },
+    "solutionDirection": {
+      "overallApproach": "以设备IoT数据采集为切入点，先解决设备监控和工艺追溯这两个痛点，建立客户信任后再扩展到生产管理和成本核算模块。",
+      "recommendedApproach": null,
+      "technicalDirection": null,
+      "implementationStrategy": null,
+      "nextSteps": [
+        "预约拜访，确认老板和技术负责人的具体需求",
+        "了解现有设备PLC/传感器情况，评估数据采集方案",
+        "了解员工信息化水平和使用习惯"
+      ]
+    },
+    "pendingQuestions": [
+      {
+        "id": "PQ-001",
+        "category": "预算",
+        "priority": "必问",
+        "stage": "screening",
+        "question": "贵司今年在生产管理数字化这块的预算大概是多少？",
+        "purpose": "评估客户购买力和项目可行性",
+        "expectedDirection": "了解预算量级，判断是否在合理范围内",
+        "targetPerson": "老板/总经理",
+        "relatedNeedIds": ["REQ-001", "REQ-002", "REQ-003", "REQ-004", "REQ-009"],
+        "status": "pending",
+        "answer": null,
+        "resolvedInVersion": null
+      },
+      {
+        "id": "PQ-002",
+        "category": "时间",
+        "priority": "必问",
+        "stage": "screening",
+        "question": "希望什么时候能看到初步效果或上线使用？",
+        "purpose": "判断项目紧迫性和期望周期",
+        "expectedDirection": "了解时间预期，评估分阶段交付可行性",
+        "targetPerson": "老板/总经理",
+        "relatedNeedIds": ["REQ-001", "REQ-002", "REQ-003"],
+        "status": "pending",
+        "answer": null,
+        "resolvedInVersion": null
+      },
+      {
+        "id": "PQ-003",
+        "category": "业务",
+        "priority": "必问",
+        "stage": "deep-dive",
+        "question": "目前订单进度是怎么跟客户沟通的？客户投诉最多的是什么问题？",
+        "purpose": "验证REQ-001需求真实性和优先级",
+        "expectedDirection": "了解当前痛点是否指向订单透明度问题",
+        "targetPerson": "老板/技术负责人",
+        "relatedNeedIds": ["REQ-001", "REQ-006"],
+        "status": "pending",
+        "answer": null,
+        "resolvedInVersion": null
+      },
+      {
+        "id": "PQ-004",
+        "category": "技术",
+        "priority": "必问",
+        "stage": "deep-dive",
+        "question": "现有设备是什么品牌/型号的PLC？有没有预留数据采集接口？",
+        "purpose": "评估REQ-007设备联网的技术可行性",
+        "expectedDirection": "了解现有设备情况，判断数据采集难度和成本",
+        "targetPerson": "技术负责人",
+        "relatedNeedIds": ["REQ-003", "REQ-007"],
+        "status": "pending",
+        "answer": null,
+        "resolvedInVersion": null
+      },
+      {
+        "id": "PQ-005",
+        "category": "决策",
+        "priority": "选问",
+        "stage": "closing",
+        "question": "除了您之外，这个项目的选型还需要谁拍板？",
+        "purpose": "明确决策链，评估销售周期",
+        "expectedDirection": "了解是否需要拜访更大领导",
+        "targetPerson": "老板/总经理",
+        "relatedNeedIds": [],
+        "status": "pending",
+        "answer": null,
+        "resolvedInVersion": null
+      },
+      {
+        "id": "PQ-006",
+        "category": "业务",
+        "priority": "选问",
+        "stage": "deep-dive",
+        "question": "出现过因为工艺参数无法追溯导致的客诉吗？一般怎么处理？",
+        "purpose": "验证REQ-002需求真实性和业务价值",
+        "expectedDirection": "了解工艺追溯的商业价值",
+        "targetPerson": "技术负责人",
+        "relatedNeedIds": ["REQ-002", "REQ-008"],
+        "status": "pending",
+        "answer": null,
+        "resolvedInVersion": null
+      },
+      {
+        "id": "PQ-007",
+        "category": "竞对",
+        "priority": "选问",
+        "stage": "screening",
+        "question": "有没有了解过其他类似的生产管理系统？",
+        "purpose": "了解客户认知和竞对情况",
+        "expectedDirection": "了解客户对竞品的认知程度",
+        "targetPerson": "老板/技术负责人",
+        "relatedNeedIds": [],
+        "status": "pending",
+        "answer": null,
+        "resolvedInVersion": null
+      }
+    ],
+    "risksAndAssumptions": {
+      "risks": [
+        {
+          "description": "小微企业员工信息化水平较低，系统推行可能遇到阻力",
+          "impact": "高",
+          "mitigation": "界面设计简洁易用，提供培训和使用引导"
+        },
+        {
+          "description": "设备型号多样，PLC接口不统一，数据采集成本可能超出预期",
+          "impact": "中",
+          "mitigation": "先调研设备情况，明确数据采集方案再报价"
+        },
+        {
+          "description": "老板个人判断主导，可能因主观因素终止项目",
+          "impact": "中",
+          "mitigation": "快速交付MVP，让客户尽快看到价值"
+        }
+      ],
+      "assumptions": [
+        {
+          "description": "客户愿意配合提供设备接口和工艺数据",
+          "impact": "高"
+        },
+        {
+          "description": "客户现有员工能够适应基本的数字化操作",
+          "impact": "中"
+        },
+        {
+          "description": "项目预算在SaaS年费1-3万元范围内可接受",
+          "impact": "中"
+        }
+      ],
+      "dependencies": [
+        {
+          "description": "需要客户提供设备PLC型号和接口文档",
+          "type": "外部依赖"
+        },
+        {
+          "description": "需要客户提供现有生产流程和工艺参数信息",
+          "type": "外部依赖"
+        }
+      ]
+    },
+    "completionRate": {
+      "overall": 20,
+      "byCategory": {
+        "functional": 20,
+        "technical": 20,
+        "non-functional": 20
+      },
+      "blockers": [
+        "REQ-001 订单排程与进度可视化 - confidence=low",
+        "REQ-002 工艺参数记录与追溯 - confidence=low",
+        "REQ-003 设备稼动率监控 - confidence=low"
+      ]
+    }
+  }
+}
