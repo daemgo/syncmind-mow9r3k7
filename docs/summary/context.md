@@ -2,13 +2,27 @@
 
 ---
 ### 2026-05-08
-**Skills**: /requirements
+**Skills**: /requirements (增量模式)
 
-**变更**: docs/customer/requirements.json (新建)
+**变更**: 
+- docs/customer/profile.json (v1.0 → v1.1)
+- docs/customer/requirements.json (v0.1 → v0.2)
 
-- 为温州市国彩真空科技有限公司生成冷启动需求文档 v0.1
-- 推演 10 条需求（4 must-have、3 should-have、3 could-have），覆盖生产管理、质量管理、设备管理、成本管理、库存管理模块
-- 生成 7 个待验证问题（4 必问 + 3 选问），分 screening/deep-dive/closing 三个阶段
-- 识别主要风险：小微员工信息化水平低、设备接口不统一、老板个人决策主导
+**变更摘要**:
 
-**待跟进**: 需要拜访客户验证 must-have 需求真实性和优先级
+**Profile 深化**:
+- 新增 `industryContext` 字段：PVD市场规模128亿、行业竞争格局、客户痛点数据
+- 新增 `organization.productionTeam` / `itInfrastructure`：生产团队、IT基础设施推测
+- 新增 `riskAndPolicy.policy.subsidy`：温州数字化转型补贴政策
+- 新增 `opportunities[政策红利]`：政府补贴申请机会
+- confidence 0.55 → 0.65
+
+**Requirements 深化**:
+- 新增 REQ-011 膜层质量追溯管理（膜厚/附着力/盐雾测试）
+- 新增 REQ-012 客户投诉与退货管理
+- 所有需求细化PVD行业专业参数：真空度/温度/功率/膜厚/靶材批次/盐雾测试
+- 成本核算细化：电耗/靶材/气体/工时/折旧
+- 新增 PQ-008 靶材消耗核算问题
+- 所有问题补充政策引导话术
+
+**待跟进**: 需要拜访客户验证 must-have 需求真实性
