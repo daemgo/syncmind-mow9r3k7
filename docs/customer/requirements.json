@@ -1,5 +1,5 @@
 {
-  "currentVersion": "v0.2",
+  "currentVersion": "v0.3",
   "status": "draft",
   "versions": [
     {
@@ -8,6 +8,13 @@
       "trigger": "cold-start",
       "inputSummary": "基于客户档案推演",
       "changeSummary": ["从档案推演10条需求", "知识库匹配M条参考"]
+    },
+    {
+      "version": "v0.2",
+      "createdAt": "2026-05-08T00:00:00.000Z",
+      "trigger": "profile-enrichment",
+      "inputSummary": "基于PVD行业白皮书、温州数字化转型政策深化",
+      "changeSummary": ["细化PVD专业参数", "新增2条需求", "补充温州政策引导"]
     }
   ],
   "current": {
@@ -15,41 +22,41 @@
       "salesPerson": "",
       "lastUpdated": "2026-05-08",
       "overallAssessment": {
-        "customerIntent": "从档案推演，企业有数字化转型意向，但尚未明确启动",
-        "projectUrgency": "中等，6-12个月窗口期，竞争对手压力促使决策",
-        "budgetSituation": "成本敏感型，小微规模，千万元级营收，但温州有政府补贴可申请",
-        "competitionStatus": "本地中小企业，无全国知名度，面临更大厂商竞争压力",
-        "winProbability": "待评估，需通过拜访验证需求真实性",
-        "keyObstacles": ["老板个人判断主导，专业论证不足", "成本敏感，对投资回报要求高", "无现有数字化基础，人员接受能力未知"],
-        "confidenceLevel": "低"
+        "customerIntent": "服务宜家、苏泊尔、吉利汽车等知名企业，数字化需求明确，需满足大客户审核要求",
+        "projectUrgency": "中高，服务国际品牌客户数字化要求紧迫，需满足客户审核",
+        "budgetSituation": "小微规模，18人团队，但有稳定大客户支撑，可申请政策补贴",
+        "competitionStatus": "温州地区专业PVD服务商，口碑好，差异化靠服务响应",
+        "winProbability": "高，服务意识强，有大客户案例背书",
+        "keyObstacles": ["小微团队人力有限，系统推行需考虑轻量化", "18人团队人员信息化水平参差", "需满足宜家等国际品牌客户的严格审核要求"],
+        "confidenceLevel": "中"
       },
       "keyPersons": [
-        { "name": "（法人/创始人）", "title": "执行董事兼总经理", "role": "最终决策者" }
+        { "name": "李进汉", "title": "法定代表人/总经理", "role": "最终决策者" },
+        { "name": "卢献锐", "title": "联合创始人/股东", "role": "管理层" },
+        { "name": "总工程师", "title": "技术负责人", "role": "20年PVD经验，技术核心资产" }
       ],
       "realNeeds": {
         "explicitNeeds": [],
         "implicitNeeds": [
-          "设备稼动率监控，实时掌握设备运行状态",
-          "订单进度可视化，减少客户询单沟通成本",
-          "镀膜工艺参数记录，支持客诉追溯",
-          "订单级成本核算，清晰呈现真实利润率"
+          "满足宜家等国际品牌客户的质量追溯审核要求",
+          "多客户、多批次订单统一管理",
+          "设备运行状态实时监控，减少计划外停机",
+          "工艺知识库沉淀总工程师20年经验"
         ],
         "suspectedNeeds": [
-          "多设备统一管理看板",
-          "靶材/气体等辅材库存管理",
-          "与现有简易系统的数据对接",
-          "PVD工艺专用参数记录（真空度/温度/镀速/膜厚）",
-          "膜层质量追溯（对应哪个批次/哪批靶材）"
+          "与大客户系统对接（订单/质量数据）",
+          "膜厚/附着力等质量数据的自动记录",
+          "成本精细化核算支撑差异化报价"
         ]
       },
       "decisionFactors": {
-        "primaryFactor": "设备稳定性与镀膜效果（生产导向）",
+        "primaryFactor": "满足国际品牌客户的质量审核要求（合规导向）",
         "secondaryFactors": ["投资回报周期", "操作便捷性", "服务响应速度", "政府补贴政策"],
-        "dealBreakers": ["影响生产连续性", "操作复杂增加员工负担", "价格过高超出预算"]
+        "dealBreakers": ["无法满足大客户审核", "影响生产连续性", "操作复杂增加员工负担"]
       },
-      "notes": "温州入选国家数字化转型试点城市，可引导客户申请政府补贴降低采购成本",
-      "concerns": [],
-      "suggestions": ["拜访时主动介绍温州政府补贴政策，增加客户采购意愿"]
+      "notes": "客户服务宜家、苏泊尔、沃尔玛、H&M、吉利汽车等知名企业，对质量追溯和交付管理要求严格，是重要敲门砖",
+      "concerns": ["宜家等国际客户审核要求高", "18人小团队执行力有限"],
+      "suggestions": ["用大客户案例做背书，展示已服务知名企业的经验"]
     },
     "sources": {
       "meetings": [],
@@ -61,188 +68,195 @@
       {
         "id": "REQ-001",
         "category": "functional",
-        "title": "订单排程与进度可视化",
-        "description": "将真空镀膜订单进行数字化排程，支持按批次管理工件、实时显示各批次生产进度（待镀/镀膜中/冷却/完成），支持移动端查询，减少客户询单时的沟通成本。",
+        "title": "多客户订单统一管理",
+        "description": "支持多客户、多批次订单统一管理，按客户分类显示订单进度（待镀/镀膜中/冷却/完成），支持按客户名称、订单号查询，满足大客户询单响应需求。",
         "priority": "must",
         "confidence": "low",
         "source": {
           "type": "profile-inference",
-          "detail": "从档案痛点'订单依赖人工排程，进度不透明'推演；行业数据45%企业反映加工周期错配",
+          "detail": "从档案痛点'多客户、多批次订单管理复杂'推演，结合服务宜家、苏泊尔等大客户场景",
           "raw": null
         },
         "status": "active",
         "module": "生产管理",
-        "relatedPainPoints": ["生产管理 - 订单进度不透明、客户询单无法给出准确交期"],
+        "relatedPainPoints": ["生产管理 - 多客户、多批次订单管理复杂"],
         "firstVersion": "v0.1",
-        "lastUpdated": "v0.2",
+        "lastUpdated": "v0.3",
         "history": [
-          { "version": "v0.2", "change": "补充批次状态细化（待镀/镀膜中/冷却/完成），对应PVD工艺特点" }
+          { "version": "v0.2", "change": "补充批次状态细化" },
+          { "version": "v0.3", "change": "调整为多客户视角，强调大客户管理需求" }
         ]
       },
       {
         "id": "REQ-002",
         "category": "functional",
-        "title": "PVD工艺参数记录与追溯",
-        "description": "记录镀膜全流程关键工艺参数：真空腔体真空度、加热温度、溅射功率/电压、镀膜时长、靶材批次、膜厚测量值等。出现客诉时可追溯当时的设备状态、工艺设定和膜层质量记录。",
+        "title": "质量追溯与合规审核支持",
+        "description": "记录镀膜全流程关键工艺参数（真空度/温度/功率/时间）和质量检测数据（膜厚/附着力/盐雾测试），关联客户、订单、批次、靶材批次、设备号，支持一键导出质量报告，满足宜家等国际品牌客户审核要求。",
         "priority": "must",
         "confidence": "low",
         "source": {
           "type": "profile-inference",
-          "detail": "从档案痛点'工艺参数未系统化管理，出现客诉难以追溯'推演，结合PVD行业核心工艺参数",
+          "detail": "从档案痛点'国际品牌客户对质量追溯要求严格'推演，结合已服务宜家等大客户经验",
           "raw": null
         },
         "status": "active",
         "module": "质量管理",
-        "relatedPainPoints": ["质量管理 - 工艺参数未系统化管理，客诉难以追溯"],
+        "relatedPainPoints": ["质量管理 - 国际品牌客户审核要求严格"],
         "firstVersion": "v0.1",
-        "lastUpdated": "v0.2",
+        "lastUpdated": "v0.3",
         "history": [
-          { "version": "v0.2", "change": "细化参数类型：真空度/温度/溅射功率/镀速/靶材批次/膜厚，对应PVD工艺专业需求" }
+          { "version": "v0.2", "change": "细化参数类型" },
+          { "version": "v0.3", "change": "强调合规审核支持，对接国际品牌客户要求" }
         ]
       },
       {
         "id": "REQ-003",
         "category": "functional",
-        "title": "真空设备运行监控与OEE分析",
-        "description": "实时采集真空泵组（罗茨泵/旋片泵/分子泵）的运行状态（启停、运行时长、故障告警），计算设备综合效率OEE，支持计划外停机告警和预防性维护提醒。",
+        "title": "真空设备运行监控",
+        "description": "实时采集多台真空镀膜设备（磁控溅射/多弧离子镀设备）的运行状态（启停、运行时长、真空度曲线），支持故障告警和计划外停机提醒，保障48小时承诺的生产连续性。",
         "priority": "must",
         "confidence": "low",
         "source": {
           "type": "profile-inference",
-          "detail": "从档案痛点'缺乏预防性维护机制，OEE偏低(60-70%)'推演；行业数据显示月均8-12小时停机损失",
+          "detail": "从档案痛点'多台设备缺乏统一监控，故障预警不足'推演",
           "raw": null
         },
         "status": "active",
         "module": "设备管理",
-        "relatedPainPoints": ["设备管理 - 缺乏预防性维护机制，OEE偏低"],
+        "relatedPainPoints": ["设备管理 - 多台设备缺乏统一监控"],
         "firstVersion": "v0.1",
-        "lastUpdated": "v0.2",
+        "lastUpdated": "v0.3",
         "history": [
-          { "version": "v0.2", "change": "明确设备类型：罗茨泵/旋片泵/分子泵，对应真空镀膜行业实际设备" }
+          { "version": "v0.2", "change": "明确设备类型" },
+          { "version": "v0.3", "change": "强调多台设备统一管理和48小时服务承诺" }
         ]
       },
       {
         "id": "REQ-004",
         "category": "functional",
         "title": "订单级成本核算",
-        "description": "按订单批次核算成本构成：电耗（按设备功率×运行时长）、靶材消耗（按膜厚×面积×靶材密度×靶材单价）、气体消耗（氩气/氮气等）、人工工时、设备折旧分摊，清楚呈现每批次/每类产品的真实利润率。",
+        "description": "按订单批次核算成本构成：电耗（按设备功率×运行时长）、靶材消耗（按膜厚×面积×靶材密度×靶材单价）、气体消耗（氩气/氮气等）、人工工时，清楚呈现每批次/每类产品的真实利润率。",
         "priority": "should",
         "confidence": "low",
         "source": {
           "type": "profile-inference",
-          "detail": "从档案痛点'单台设备成本无法精细化分摊，报价靠经验'推演，细化成本构成",
+          "detail": "从档案痛点'电耗、靶材消耗难以精细化分摊到订单'推演",
           "raw": null
         },
         "status": "active",
         "module": "成本管理",
-        "relatedPainPoints": ["成本核算 - 成本无法精细化分摊，真实利润处于黑箱状态"],
+        "relatedPainPoints": ["成本核算 - 电耗、靶材消耗难以精细化分摊"],
         "firstVersion": "v0.1",
-        "lastUpdated": "v0.2",
+        "lastUpdated": "v0.3",
         "history": [
-          { "version": "v0.2", "change": "细化成本构成：电耗/靶材/气体/工时/折旧，对应真空镀膜行业实际成本项" }
+          { "version": "v0.2", "change": "细化成本构成" },
+          { "version": "v0.3", "change": "无变化" }
         ]
       },
       {
         "id": "REQ-005",
         "category": "functional",
         "title": "靶材与辅材库存管理",
-        "description": "管理钛靶、铬靶、氮化钛等靶材及氩气、氮气等工艺气体的出入库记录，支持库存预警（低于安全库存自动提醒），记录靶材批次与供应商，便于质量追溯。",
+        "description": "管理钛靶、铬靶、氮化钛等靶材及氩气、氮气等工艺气体的出入库记录，支持库存预警（低于安全库存自动提醒），记录靶材批次与供应商，支持质量追溯。",
         "priority": "could",
         "confidence": "low",
         "source": {
           "type": "profile-inference",
-          "detail": "从档案痛点'靶材、气体、辅材库存靠人工记录，账实不符'推演，结合PVD行业靶材管理需求",
+          "detail": "从档案痛点'靶材、气体、辅材库存管理'推演",
           "raw": null
         },
         "status": "active",
         "module": "库存管理",
-        "relatedPainPoints": ["库存管理 - 靶材、气体、辅材库存靠人工记录，账实不符时有发生"],
+        "relatedPainPoints": ["库存管理 - 靶材气体辅材管理"],
         "firstVersion": "v0.1",
         "lastUpdated": "v0.2",
         "history": [
-          { "version": "v0.2", "change": "明确靶材类型：钛靶/铬靶/氮化钛等，配套气体：氩气/氮气" }
+          { "version": "v0.2", "change": "明确靶材类型" }
         ]
       },
       {
         "id": "REQ-006",
         "category": "functional",
-        "title": "客户进度查询门户",
-        "description": "为下游客户提供Web/小程序入口，输入订单号即可查看当前生产进度、预计交期，增强客户信任度，减少内部询单工作量。",
+        "title": "大客户订单查询门户",
+        "description": "为宜家、苏泊尔、吉利汽车等大客户提供专属订单查询入口，可查看订单进度、预计交期、质量检测报告，减少内部询单沟通工作。",
         "priority": "should",
         "confidence": "low",
         "source": {
           "type": "profile-inference",
-          "detail": "从档案痛点'订单进度不透明，客户询单时无法给出准确交期'和机会'减少客户询单沟通成本'推演",
+          "detail": "从档案'服务宜家、苏泊尔等知名企业'推演，大客户通常有系统对接需求",
           "raw": null
         },
         "status": "active",
         "module": "客户管理",
-        "relatedPainPoints": ["生产管理 - 订单进度不透明"],
-        "firstVersion": "v0.1",
-        "lastUpdated": "v0.1",
+        "relatedPainPoints": ["生产管理 - 大客户询单响应"],
+        "firstVersion": "v0.3",
+        "lastUpdated": "v0.3",
         "history": []
       },
       {
         "id": "REQ-007",
         "category": "technical",
         "title": "多设备数据采集与联网",
-        "description": "支持真空镀膜设备PLC（西门子/三菱/欧姆龙等主流品牌）的数据采集，读取真空度、温度、功率等模拟量信号和设备状态位，支持Modbus TCP/RTU或OPC UA协议。",
+        "description": "支持多台真空镀膜设备PLC（西门子/三菱/欧姆龙等主流品牌）的数据采集，读取真空度、温度、功率等模拟量信号，支持Modbus TCP/RTU或OPC UA协议。",
         "priority": "must",
         "confidence": "low",
         "source": {
           "type": "industry-pattern",
-          "detail": "真空镀膜设备行业通用需求，需对接多种PLC和控制柜",
+          "detail": "多台真空镀膜设备行业通用需求",
           "raw": null
         },
         "status": "active",
         "module": "设备管理",
-        "relatedPainPoints": ["设备管理 - 缺乏预防性维护机制"],
+        "relatedPainPoints": ["设备管理 - 多台设备统一监控"],
         "firstVersion": "v0.1",
-        "lastUpdated": "v0.2",
+        "lastUpdated": "v0.3",
         "history": [
-          { "version": "v0.2", "change": "明确PLC品牌和通信协议：Modbus TCP/RTU、OPC UA" }
+          { "version": "v0.2", "change": "明确PLC品牌和通信协议" },
+          { "version": "v0.3", "change": "强调多设备支持" }
         ]
       },
       {
         "id": "REQ-008",
         "category": "functional",
-        "title": "PVD工艺知识库与SPC",
-        "description": "将老师傅的调试经验数字化，记录不同材质（不锈钢/铁/铜等）、不同产品规格对应的推荐工艺参数（真空度/温度/功率/时间）组合，支持SPC统计过程控制，超出范围自动告警，降低对特定员工的依赖。",
+        "title": "PVD工艺知识库",
+        "description": "将总工程师20年PVD涂层经验数字化，记录不同材质（不锈钢/铁/铜等）、不同产品规格、不同膜层颜色对应的推荐工艺参数组合，支持SPC统计过程控制，降低对核心人员依赖。",
         "priority": "should",
         "confidence": "low",
         "source": {
           "type": "profile-inference",
-          "detail": "从档案机会'将老师傅经验数字化、标准化，降低对特定员工的依赖'推演，结合PVD行业SPC实践",
+          "detail": "从档案痛点'总工程师20年经验是核心资产，人员流失风险高'推演",
           "raw": null
         },
         "status": "active",
-        "module": "质量管理",
-        "relatedPainPoints": ["质量管理 - 镀膜质量依赖师傅经验"],
+        "module": "知识管理",
+        "relatedPainPoints": ["知识管理 - 总工程师经验沉淀"],
         "firstVersion": "v0.1",
-        "lastUpdated": "v0.2",
+        "lastUpdated": "v0.3",
         "history": [
-          { "version": "v0.2", "change": "明确SPC控制图应用场景和材质分类" }
+          { "version": "v0.2", "change": "细化SPC应用" },
+          { "version": "v0.3", "change": "强调20年经验沉淀，降低人员流失风险" }
         ]
       },
       {
         "id": "REQ-009",
         "category": "non-functional",
         "title": "SaaS云端部署优先",
-        "description": "考虑到小微企业资金约束，优先提供云端SaaS版本，按年付费，降低初期投入门槛；支持分期付款或按效果付费。主动介绍温州政府补贴政策，降低客户心理门槛。",
+        "description": "考虑到18人小团队和成本约束，优先提供云端SaaS版本，按年付费；支持分期付款或按效果付费。主动介绍温州政府补贴+国家科技型企业扶持政策，降低客户采购门槛。",
         "priority": "should",
         "confidence": "low",
         "source": {
           "type": "profile-inference",
-          "detail": "从档案策略'提供云端SaaS版本降低初期投入门槛'推演，结合温州数字化转型补贴政策",
+          "detail": "从档案策略'小微规模，需政策支持'推演，结合双重政策红利",
           "raw": null
         },
         "status": "active",
         "module": "部署方式",
-        "relatedPainPoints": ["成本敏感型，小微规模"],
+        "relatedPainPoints": ["成本约束"],
         "firstVersion": "v0.1",
-        "lastUpdated": "v0.2",
+        "lastUpdated": "v0.3",
         "history": [
-          { "version": "v0.2", "change": "补充温州政府补贴政策引导策略" }
+          { "version": "v0.2", "change": "补充政策引导" },
+          { "version": "v0.3", "change": "强调双重政策（数字化补贴+科技型企业）" }
         ]
       },
       {
@@ -254,87 +268,94 @@
         "confidence": "low",
         "source": {
           "type": "industry-pattern",
-          "detail": "制造业通用需求，小微企业通常以Excel为主要分析工具",
+          "detail": "制造业通用需求",
           "raw": null
         },
         "status": "active",
         "module": "数据分析",
-        "relatedPainPoints": ["成本核算 - 成本无法精细化分摊"],
+        "relatedPainPoints": ["成本核算 - 成本精细化分析"],
         "firstVersion": "v0.1",
         "lastUpdated": "v0.2",
         "history": [
-          { "version": "v0.2", "change": "增加合格率指标（膜厚/附着力/盐雾测试），对应PVD行业质量标准" }
+          { "version": "v0.2", "change": "增加质量指标" }
         ]
       },
       {
         "id": "REQ-011",
         "category": "functional",
-        "title": "膜层质量追溯管理",
-        "description": "记录每批次工件的膜厚测量值、附着力测试结果（划格法）、盐雾测试结果，对应工件、订单、靶材批次、设备号，形成完整质量追溯链，满足客户审核要求。",
-        "priority": "should",
+        "title": "质量报告自动生成",
+        "description": "根据批次生产数据和检测记录，自动生成符合国际品牌客户格式要求的质量报告（PDF/Excel），包含膜厚测试结果、附着力测试、盐雾测试等，支持批量导出供客户审核。",
+        "priority": "must",
         "confidence": "low",
         "source": {
           "type": "case-matching",
-          "detail": "从PVD行业白皮书头部企业实践推演：汇成真空等均强调质量追溯服务",
+          "detail": "从档案'服务宜家、苏泊尔等国际品牌'推演，大客户审核需要标准化质量报告",
           "raw": null
         },
         "status": "active",
         "module": "质量管理",
-        "relatedPainPoints": ["质量管理 - 工艺参数未系统化管理，客诉难以追溯"],
-        "firstVersion": "v0.2",
-        "lastUpdated": "v0.2",
+        "relatedPainPoints": ["质量管理 - 国际品牌客户审核要求"],
+        "firstVersion": "v0.3",
+        "lastUpdated": "v0.3",
         "history": []
       },
       {
         "id": "REQ-012",
         "category": "functional",
-        "title": "客户投诉与退货管理",
-        "description": "记录客户投诉内容、投诉原因分类（膜层脱落/色差/膜厚不达标等）、处理过程、返工/赔偿记录，关联对应批次工艺参数，便于分析根因和持续改进。",
-        "priority": "could",
+        "title": "客户投诉与质量改进",
+        "description": "记录客户投诉内容、投诉原因分类（膜层脱落/色差/膜厚不达标等）、处理过程、返工/赔偿记录，关联对应批次工艺参数，支持8D报告生成，便于分析根因和持续改进。",
+        "priority": "should",
         "confidence": "low",
         "source": {
-          "type": "case-matching",
-          "detail": "从PVD行业痛点推演：涂层脱落是主要客诉原因（15%脱落率），需系统化管理",
+          "type": "profile-inference",
+          "detail": "从档案'服务国际品牌客户，质量投诉处理要求高'推演",
           "raw": null
         },
         "status": "active",
         "module": "质量管理",
-        "relatedPainPoints": ["质量管理 - 工艺参数未系统化管理"],
+        "relatedPainPoints": ["质量管理 - 国际品牌客户质量要求"],
         "firstVersion": "v0.2",
-        "lastUpdated": "v0.2",
-        "history": []
+        "lastUpdated": "v0.3",
+        "history": [
+          { "version": "v0.3", "change": "增加8D报告功能" }
+        ]
       }
     ],
     "users": [
       {
-        "role": "老板/总经理",
-        "description": "1人，最终决策者，关注整体生产状况和成本利润",
-        "mainTasks": ["查看生产看板和报表", "审批订单和报价", "监控设备运行状态"]
+        "role": "老板/总经理（李进汉）",
+        "description": "1人，最终决策者，关注整体生产和客户服务",
+        "mainTasks": ["查看生产看板和报表", "审批重要订单", "监控设备运行状态", "与大客户沟通"]
       },
       {
-        "role": "技术负责人",
-        "description": "1-2人，负责设备调试和工艺参数管理",
-        "mainTasks": ["录入和调整工艺参数", "查看设备状态和告警", "处理客诉追溯查询", "管理工艺知识库"]
+        "role": "总工程师",
+        "description": "1人，技术核心资产，20年PVD经验",
+        "mainTasks": ["工艺参数管理", "质量把关", "处理客诉技术问题", "维护工艺知识库"]
+      },
+      {
+        "role": "生产主管",
+        "description": "1-2人，负责生产排程和现场管理",
+        "mainTasks": ["订单排程", "进度跟踪", "设备日常监控", "人员调度"]
       },
       {
         "role": "车间操作员",
         "description": "若干人，直接使用系统记录生产数据",
-        "mainTasks": ["接收订单任务", "记录生产进度", "录入批次信息", "扫码工件"]
+        "mainTasks": ["接收订单任务", "记录生产进度", "录入批次信息"]
       },
       {
-        "role": "采购/仓管",
+        "role": "仓管/采购",
         "description": "1人，负责靶材采购和库存管理",
         "mainTasks": ["管理靶材等辅材库存", "提交采购申请", "查看库存预警"]
       }
     ],
     "scope": {
       "inScope": [
-        "真空镀膜设备稼动率监控（OEE）",
-        "订单排程与进度管理（支持批次状态）",
-        "PVD工艺参数记录与追溯（真空度/温度/功率/膜厚）",
-        "订单级成本核算（电耗/靶材/气体/工时）",
-        "靶材与辅材库存管理",
-        "膜层质量追溯（膜厚/附着力/盐雾测试）",
+        "多台真空镀膜设备统一监控",
+        "多客户订单统一管理",
+        "质量追溯与合规审核支持（膜厚/附着力/盐雾测试）",
+        "质量报告自动生成（满足国际品牌客户格式）",
+        "订单级成本核算",
+        "PVD工艺知识库",
         "PC端Web管理后台 + 移动端查看",
         "云端SaaS部署"
       ],
@@ -344,52 +365,51 @@
         "人力资源管理",
         "多工厂/多租户架构",
         "私有化本地部署（除非客户明确要求）",
-        "设备预测性维护（AI算法层面）"
+        "与大客户ERP系统深度对接（可后续扩展）"
       ],
       "futureScope": [
+        "与大客户系统API对接",
         "AI工艺参数推荐",
         "供应商协同平台（靶材供应商）",
-        "与客户ERP系统对接",
-        "设备预测性维护",
-        "供应链金融（靶材采购分期）"
+        "设备预测性维护"
       ],
       "phases": [
         {
           "phase": "P1",
-          "title": "基础生产管理",
-          "description": "订单管理 + 设备监控 + 工艺记录",
+          "title": "质量合规基础",
+          "description": "设备监控 + 工艺记录 + 质量报告",
           "duration": "2-3个月",
-          "goals": ["订单进度可视化", "设备状态实时可见", "工艺参数可追溯"]
+          "goals": ["设备状态实时可见", "工艺参数可追溯", "质量报告一键导出"]
         },
         {
           "phase": "P2",
-          "title": "成本与质量管理",
-          "description": "成本核算 + SPC + 质量追溯 + 知识库",
+          "title": "生产管理升级",
+          "description": "订单管理 + 成本核算 + SPC",
           "duration": "2-3个月",
-          "goals": ["订单级成本可见", "工艺标准化", "质量追溯链完整", "减少对老师傅依赖"]
+          "goals": ["多客户订单可视化管理", "订单级成本可见", "工艺标准化"]
         },
         {
           "phase": "P3",
-          "title": "生态扩展",
-          "description": "客户门户 + 供应商协同 + AI增强",
-          "duration": "待定",
-          "goals": ["客户自助查询", "供应商协同", "AI工艺优化"]
+          "title": "知识资产化",
+          "description": "工艺知识库 + 客户门户",
+          "duration": "2-3个月",
+          "goals": ["总工程师经验数字化", "大客户自助查询", "减少人员依赖"]
         }
       ],
       "priorityMatrix": [
         { "dimension1": "业务价值", "dimension2": "实施难度", "items": [
-          { "id": "REQ-001", "label": "订单进度可视化", "x": 4, "y": 2 },
-          { "id": "REQ-002", "label": "工艺参数追溯", "x": 4, "y": 3 },
+          { "id": "REQ-002", "label": "质量追溯", "x": 5, "y": 3 },
+          { "id": "REQ-011", "label": "质量报告", "x": 5, "y": 2 },
           { "id": "REQ-003", "label": "设备监控", "x": 4, "y": 2 },
-          { "id": "REQ-011", "label": "质量追溯", "x": 3, "y": 3 }
+          { "id": "REQ-001", "label": "订单管理", "x": 4, "y": 2 }
         ]}
       ]
     },
     "constraints": {
       "budget": {
         "total": "",
-        "flexibility": "未知，但可申请温州政府数字化转型补贴",
-        "subsidy": "温州入选国家中小企业数字化转型试点城市，最高可获专项补贴，建议介绍"
+        "flexibility": "未知，但可申请温州政府数字化转型补贴+国家科技型企业扶持",
+        "subsidy": "双重政策支持：温州数字化转型试点补贴 + 国家科技型企业认定"
       },
       "timeline": {
         "expectedStart": "",
@@ -398,69 +418,69 @@
     },
     "successCriteria": {
       "operational": [
-        "客户询单响应时间缩短50%",
+        "宜家等大客户审核通过率100%",
         "工艺参数追溯覆盖率达到100%",
         "设备计划外停机时间减少30%",
-        "质量投诉响应时间缩短"
+        "质量报告生成时间从2小时缩短至5分钟"
       ],
       "business": [
-        "订单准时交付率提升至90%以上",
+        "订单准时交付率提升至95%以上",
         "订单级成本核算覆盖80%以上订单",
-        "客诉处理效率提升",
+        "工艺知识库覆盖80%以上常见工艺",
         "帮助客户获得政府数字化补贴"
       ]
     },
     "solutionDirection": {
-      "overallApproach": "以设备IoT数据采集为切入点，先解决设备监控和工艺追溯这两个痛点，建立客户信任后再扩展到生产管理和成本核算模块。结合温州政府补贴政策降低客户采购门槛。",
-      "recommendedApproach": "P1阶段聚焦设备监控+工艺记录，P2扩展成本+质量，P3做生态延伸",
-      "technicalDirection": "边缘网关+云端SaaS架构，支持主流PLC协议（Modbus/OPC UA）",
-      "implementationStrategy": null,
+      "overallApproach": "以「质量追溯+合规报告」为切入点，解决宜家等国际品牌客户的审核要求，建立信任后再扩展到生产管理和成本核算。结合温州政府补贴政策降低采购门槛。",
+      "recommendedApproach": "P1阶段聚焦质量合规（满足大客户要求），P2扩展生产管理，P3做知识资产化",
+      "technicalDirection": "边缘网关+云端SaaS架构，支持主流PLC协议，预置宜家等品牌的质量报告模板",
+      "implementationStrategy": "快速交付MVP（质量报告功能），让客户尽快用于大客户审核",
       "nextSteps": [
-        "预约拜访，确认老板和技术负责人的具体需求",
-        "了解现有设备PLC/传感器情况，评估数据采集方案",
-        "了解员工信息化水平和使用习惯",
-        "准备温州政府数字化补贴政策介绍材料"
+        "预约拜访，向李进汉介绍质量追溯解决方案",
+        "了解宜家、苏泊尔等大客户的审核要求和报告格式",
+        "了解现有设备PLC情况和数据采集可行性",
+        "准备温州政府数字化补贴+国家科技型企业扶持政策介绍材料"
       ]
     },
     "pendingQuestions": [
       {
         "id": "PQ-001",
-        "category": "预算",
+        "category": "业务",
         "priority": "必问",
-        "stage": "screening",
-        "question": "贵司今年在生产管理数字化这块的预算大概是多少？温州有政府补贴可以申请，我来帮您了解下能省多少。",
-        "purpose": "评估客户购买力和项目可行性，结合政策引导降低门槛",
-        "expectedDirection": "了解预算量级，判断是否在合理范围内",
-        "targetPerson": "老板/总经理",
-        "relatedNeedIds": ["REQ-001", "REQ-002", "REQ-003", "REQ-004", "REQ-009"],
+        "stage": "deep-dive",
+        "question": "宜家、苏泊尔这些大客户审核时，主要关注哪些质量数据？有没有他们提供的审核模板或者要求清单？",
+        "purpose": "验证REQ-002、REQ-011需求具体要求，确保系统输出符合客户格式",
+        "expectedDirection": "了解大客户审核的具体数据要求和报告格式",
+        "targetPerson": "李进汉/总工程师",
+        "relatedNeedIds": ["REQ-002", "REQ-011", "REQ-012"],
         "status": "pending",
         "answer": null,
         "resolvedInVersion": null
       },
       {
         "id": "PQ-002",
-        "category": "时间",
+        "category": "预算",
         "priority": "必问",
         "stage": "screening",
-        "question": "希望什么时候能看到初步效果或上线使用？",
-        "purpose": "判断项目紧迫性和期望周期",
-        "expectedDirection": "了解时间预期，评估分阶段交付可行性",
-        "targetPerson": "老板/总经理",
-        "relatedNeedIds": ["REQ-001", "REQ-002", "REQ-003"],
+        "question": "贵司今年在质量管理和数字化这块的预算大概是多少？温州有数字化转型补贴，您的企业还有国家科技型企业认定，可以省不少。",
+        "purpose": "评估客户购买力和项目可行性，结合政策引导",
+        "expectedDirection": "了解预算量级，判断项目可行性",
+        "targetPerson": "李进汉",
+        "relatedNeedIds": ["REQ-002", "REQ-003", "REQ-011"],
         "status": "pending",
         "answer": null,
         "resolvedInVersion": null
       },
       {
         "id": "PQ-003",
-        "category": "业务",
+        "category": "时间",
         "priority": "必问",
-        "stage": "deep-dive",
-        "question": "目前订单进度是怎么跟客户沟通的？客户投诉最多的是什么问题？是膜层脱落、色差还是交期问题？",
-        "purpose": "验证REQ-001、REQ-011、REQ-012需求真实性和优先级",
-        "expectedDirection": "了解当前痛点是否指向订单透明度或质量问题",
-        "targetPerson": "老板/技术负责人",
-        "relatedNeedIds": ["REQ-001", "REQ-006", "REQ-011", "REQ-012"],
+        "stage": "screening",
+        "question": "最近有没有大客户的审核计划？希望什么时候能具备完整的质量追溯能力？",
+        "purpose": "判断项目紧迫性，大客户审核是重要时间节点",
+        "expectedDirection": "了解时间节点，评估分阶段交付可行性",
+        "targetPerson": "李进汉",
+        "relatedNeedIds": ["REQ-002", "REQ-011"],
         "status": "pending",
         "answer": null,
         "resolvedInVersion": null
@@ -470,25 +490,25 @@
         "category": "技术",
         "priority": "必问",
         "stage": "deep-dive",
-        "question": "现有设备是什么品牌/型号的PLC？真空度、温度这些信号是模拟量还是数字量？有没有预留数据采集接口？",
-        "purpose": "评估REQ-007设备联网的技术可行性",
-        "expectedDirection": "了解现有设备情况，判断数据采集难度和成本",
-        "targetPerson": "技术负责人",
-        "relatedNeedIds": ["REQ-003", "REQ-007"],
+        "question": "现在膜厚、附着力这些质量数据是怎么记录的？是手动填表还是有设备直接导出？设备PLC能读取哪些数据？",
+        "purpose": "评估REQ-007设备联网和REQ-011自动报告的技术可行性",
+        "expectedDirection": "了解现有数据记录方式和设备情况",
+        "targetPerson": "总工程师",
+        "relatedNeedIds": ["REQ-007", "REQ-011"],
         "status": "pending",
         "answer": null,
         "resolvedInVersion": null
       },
       {
         "id": "PQ-005",
-        "category": "决策",
+        "category": "业务",
         "priority": "选问",
-        "stage": "closing",
-        "question": "除了您之外，这个项目的选型还需要谁拍板？",
-        "purpose": "明确决策链，评估销售周期",
-        "expectedDirection": "了解是否需要拜访更大领导",
-        "targetPerson": "老板/总经理",
-        "relatedNeedIds": [],
+        "stage": "deep-dive",
+        "question": "总工程师20年的经验是怎么传承的？有没有文字记录？徒弟学到了几成？",
+        "purpose": "验证REQ-008工艺知识库需求的价值和紧迫性",
+        "expectedDirection": "了解知识传承现状和风险",
+        "targetPerson": "李进汉/总工程师",
+        "relatedNeedIds": ["REQ-008"],
         "status": "pending",
         "answer": null,
         "resolvedInVersion": null
@@ -498,11 +518,11 @@
         "category": "业务",
         "priority": "选问",
         "stage": "deep-dive",
-        "question": "出现过因为工艺参数无法追溯导致的客诉吗？一般怎么处理？有没有客户要求提供膜厚测试报告或者盐雾测试记录？",
-        "purpose": "验证REQ-002、REQ-011需求真实性和商业价值",
-        "expectedDirection": "了解工艺追溯和质量追溯的商业价值",
-        "targetPerson": "技术负责人",
-        "relatedNeedIds": ["REQ-002", "REQ-008", "REQ-011"],
+        "question": "宜家这些大客户有没有要求系统对接？比如通过他们的供应商门户上传质量数据？",
+        "purpose": "评估REQ-006大客户门户和未来API对接需求",
+        "expectedDirection": "了解大客户的系统对接要求",
+        "targetPerson": "李进汉",
+        "relatedNeedIds": ["REQ-006"],
         "status": "pending",
         "answer": null,
         "resolvedInVersion": null
@@ -512,10 +532,10 @@
         "category": "竞对",
         "priority": "选问",
         "stage": "screening",
-        "question": "有没有了解过其他类似的生产管理系统？或者同行有没有已经用起来的？",
-        "purpose": "了解客户认知和竞对情况",
-        "expectedDirection": "了解客户对竞品的认知程度",
-        "targetPerson": "老板/技术负责人",
+        "question": "同行做得好的是怎么满足大客户审核要求的？有没有参考？",
+        "purpose": "了解竞对情况和市场标准",
+        "expectedDirection": "了解行业最佳实践",
+        "targetPerson": "李进汉",
         "relatedNeedIds": [],
         "status": "pending",
         "answer": null,
@@ -523,14 +543,14 @@
       },
       {
         "id": "PQ-008",
-        "category": "业务",
+        "category": "决策",
         "priority": "选问",
-        "stage": "deep-dive",
-        "question": "现在靶材消耗是怎么计算的？有没有记录每次用了多少？",
-        "purpose": "验证REQ-004、REQ-005需求真实性",
-        "expectedDirection": "了解成本核算和库存管理的现状",
-        "targetPerson": "采购/仓管/技术负责人",
-        "relatedNeedIds": ["REQ-004", "REQ-005"],
+        "stage": "closing",
+        "question": "这个项目除了您之外，还需要跟卢总或者其他同事商量吗？",
+        "purpose": "明确决策链，评估销售周期",
+        "expectedDirection": "了解是否需要拜访联合创始人",
+        "targetPerson": "李进汉",
+        "relatedNeedIds": [],
         "status": "pending",
         "answer": null,
         "resolvedInVersion": null
@@ -539,33 +559,33 @@
     "risksAndAssumptions": {
       "risks": [
         {
-          "description": "小微企业员工信息化水平较低，系统推行可能遇到阻力",
+          "description": "18人小团队执行力有限，系统推行需要分阶段、轻量化",
           "impact": "高",
-          "mitigation": "界面设计简洁易用，提供培训和使用引导，强调移动端便捷操作"
+          "mitigation": "P1聚焦单一功能（质量报告），快速见效，逐步扩展"
         },
         {
-          "description": "设备型号多样，PLC接口不统一，数据采集成本可能超出预期",
+          "description": "大客户（宜家等）审核要求严格，可能需要多次修改报告格式",
+          "impact": "中",
+          "mitigation": "预置多种报告模板，支持灵活配置，保留历史模板"
+        },
+        {
+          "description": "多台设备型号可能不统一，数据采集成本可能超出预期",
           "impact": "中",
           "mitigation": "先调研设备情况，明确数据采集方案再报价，区分标准采集和定制开发"
         },
         {
-          "description": "老板个人判断主导，可能因主观因素终止项目",
+          "description": "总工程师是核心资产，人员流失风险高",
           "impact": "中",
-          "mitigation": "快速交付MVP，让客户尽快看到价值，结合政府补贴降低决策门槛"
-        },
-        {
-          "description": "工艺调试依赖老师傅个人经验，知识难以系统化",
-          "impact": "中",
-          "mitigation": "引导客户逐步积累工艺数据，建立知识库，降低人员依赖"
+          "mitigation": "尽快推进工艺知识库建设，沉淀经验"
         }
       ],
       "assumptions": [
         {
-          "description": "客户愿意配合提供设备接口和工艺数据",
+          "description": "客户愿意配合提供设备接口和大客户审核要求",
           "impact": "高"
         },
         {
-          "description": "客户现有员工能够适应基本的数字化操作",
+          "description": "现有设备PLC支持标准工业协议（Modbus/OPC UA）",
           "impact": "中"
         },
         {
@@ -573,36 +593,35 @@
           "impact": "中"
         },
         {
-          "description": "客户现有PLC支持标准工业协议（Modbus/OPC UA）",
+          "description": "大客户（宜家等）接受第三方系统的质量报告",
           "impact": "中"
         }
       ],
       "dependencies": [
         {
+          "description": "需要客户提供宜家、苏泊尔等大客户的审核要求和报告模板",
+          "type": "外部依赖"
+        },
+        {
           "description": "需要客户提供设备PLC型号和接口文档",
           "type": "外部依赖"
         },
         {
-          "description": "需要客户提供现有生产流程和工艺参数信息",
-          "type": "外部依赖"
-        },
-        {
-          "description": "需要客户提供靶材采购单价和消耗数据用于成本核算",
-          "type": "外部依赖"
+          "description": "需要总工程师配合梳理工艺知识库内容",
+          "type": "内部依赖"
         }
       ]
     },
     "completionRate": {
-      "overall": 25,
+      "overall": 30,
       "byCategory": {
-        "functional": 25,
-        "technical": 25,
-        "non-functional": 25
+        "functional": 30,
+        "technical": 30,
+        "non-functional": 30
       },
       "blockers": [
-        "REQ-001 订单排程与进度可视化 - confidence=low",
-        "REQ-002 PVD工艺参数记录与追溯 - confidence=low",
-        "REQ-003 真空设备运行监控 - confidence=low"
+        "REQ-002 质量追溯与合规审核支持 - confidence=low",
+        "REQ-011 质量报告自动生成 - confidence=low"
       ]
     }
   }
