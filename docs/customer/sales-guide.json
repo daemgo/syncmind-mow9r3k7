@@ -1,0 +1,157 @@
+{
+  "salesGuide": {
+    "timing": {
+      "timingStage": "选型评估期",
+      "entryStrategy": "以「质量追溯+合规报告」为切入点，先帮客户解决宜家等国际品牌客户的审核痛点，用快速交付的Demo建立信任，结合温州政府补贴政策降低采购门槛。",
+      "urgency": "中高，服务国际品牌客户，审核要求明确且有时间压力"
+    },
+    "stageAdvice": {
+      "focus": "获取大客户审核要求清单和报告模板，确认质量追溯的具体数据项",
+      "approach": "带着质量报告Demo上门，让客户看到'一键导出报告'的当场演示，比讲功能更有效",
+      "risks": "不要一次承诺太多功能，小步快跑，先解决最痛的一个点"
+    },
+    "competitors": [
+      {
+        "name": "现状（Excel+纸质记录）",
+        "threat": "高",
+        "strengths": ["零成本，无需培训", "老板自己用习惯了", "员工没有学习成本"],
+        "weaknesses": ["无法满足大客户审核要求", "数据分散难以追溯", "膜厚/附着力等关键参数记录不全"],
+        "counterStrategy": "用宜家、苏泊尔审核失败的实际场景举例，说明为什么人工记录不够用"
+      },
+      {
+        "name": "设备厂商自带系统",
+        "threat": "中",
+        "strengths": ["设备绑定，数据采集方便", "原厂服务有保障"],
+        "weaknesses": ["只能看自家设备，无法跨设备对比", "报告格式固定，难对接大客户模板", "升级费用高"],
+        "counterStrategy": "强调跨设备统一管理能力，以及质量报告模板的灵活性"
+      },
+      {
+        "name": "通用MES厂商",
+        "threat": "低",
+        "strengths": ["功能全面，大企业案例多"],
+        "weaknesses": ["价格高，18人小团队用不起", "实施周期长，3-6个月看不到效果", "操作复杂，员工抵触"],
+        "counterStrategy": "强调轻量化、SaaS按年付费、1-2个月快速交付，专为PVD行业定制"
+      }
+    ],
+    "decisionChain": {
+      "decisionMakers": [
+        {
+          "name": "李进汉",
+          "department": "总经理",
+          "reason": "法定代表人，最终拍板者，且直接参与生产管理，对质量痛点有切身感受"
+        }
+      ],
+      "influencers": [
+        {
+          "name": "总工程师",
+          "department": "技术部",
+          "reason": "技术评估的核心人物，负责工艺参数管理，对质量追溯系统有技术判断权，且20年经验是重要参考"
+        },
+        {
+          "name": "卢献锐",
+          "department": "管理层",
+          "reason": "联合创始人/股东，可能参与重大决策，需保持沟通"
+        }
+      ],
+      "blockers": []
+    },
+    "avoidTopics": [
+      "不要提及他们服务宜家、苏泊尔的具体项目细节（商业机密，客户可能不愿公开）",
+      "不要承诺与大客户ERP系统对接（可能涉及额外开发周期和费用）",
+      "不要贬低他们现有的服务流程（他们以服务响应快著称，这是核心优势）"
+    ],
+    "interviewGuide": {
+      "fromRequirements": [
+        {
+          "questionId": "PQ-002",
+          "stage": "screening",
+          "question": "贵司今年在质量管理和数字化这块的预算大概是多少？温州有数字化转型补贴，您的企业还有国家科技型企业认定，可以省不少。",
+          "priority": "必问",
+          "status": "pending"
+        },
+        {
+          "questionId": "PQ-003",
+          "stage": "screening",
+          "question": "最近有没有大客户的审核计划？希望什么时候能具备完整的质量追溯能力？",
+          "priority": "必问",
+          "status": "pending"
+        },
+        {
+          "questionId": "PQ-007",
+          "stage": "screening",
+          "question": "同行做得好的是怎么满足大客户审核要求的？有没有参考？",
+          "priority": "选问",
+          "status": "pending"
+        },
+        {
+          "questionId": "PQ-001",
+          "stage": "deep-dive",
+          "question": "宜家、苏泊尔这些大客户审核时，主要关注哪些质量数据？有没有他们提供的审核模板或者要求清单？",
+          "priority": "必问",
+          "status": "pending"
+        },
+        {
+          "questionId": "PQ-004",
+          "stage": "deep-dive",
+          "question": "现在膜厚、附着力这些质量数据是怎么记录的？是手动填表还是有设备直接导出？设备PLC能读取哪些数据？",
+          "priority": "必问",
+          "status": "pending"
+        },
+        {
+          "questionId": "PQ-005",
+          "stage": "deep-dive",
+          "question": "总工程师20年的经验是怎么传承的？有没有文字记录？徒弟学到了几成？",
+          "priority": "选问",
+          "status": "pending"
+        },
+        {
+          "questionId": "PQ-006",
+          "stage": "deep-dive",
+          "question": "宜家这些大客户有没有要求系统对接？比如通过他们的供应商门户上传质量数据？",
+          "priority": "选问",
+          "status": "pending"
+        },
+        {
+          "questionId": "PQ-008",
+          "stage": "closing",
+          "question": "这个项目除了您之外，还需要跟卢总或者其他同事商量吗？",
+          "priority": "选问",
+          "status": "pending"
+        }
+      ]
+    },
+    "tracking": {
+      "coverageRate": 0,
+      "coveredCount": 0,
+      "totalCount": 8,
+      "pendingCritical": ["PQ-001", "PQ-002", "PQ-003", "PQ-004"]
+    },
+    "nextActions": [
+      {
+        "action": "预约拜访李进汉，带质量报告Demo演示",
+        "deadline": "本周内",
+        "owner": "销售"
+      },
+      {
+        "action": "准备温州政府数字化补贴申请指南",
+        "deadline": "拜访前",
+        "owner": "销售"
+      },
+      {
+        "action": "了解宜家、苏泊尔等大客户的审核要求清单",
+        "deadline": "首次拜访中",
+        "owner": "销售/售前"
+      },
+      {
+        "action": "评估客户现有设备PLC情况",
+        "deadline": "技术调研",
+        "owner": "售前"
+      }
+    ],
+    "metadata": {
+      "generatedAt": "2026-05-08T00:00:00.000Z",
+      "updatedAt": "2026-05-08T00:00:00.000Z",
+      "version": "1.0"
+    }
+  }
+}
