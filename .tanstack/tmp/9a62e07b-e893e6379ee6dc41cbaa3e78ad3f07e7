@@ -12,7 +12,6 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as DevicesRouteImport } from './routes/devices'
 import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as QualityIndexRouteImport } from './routes/quality/_index'
 import { Route as OrdersIndexRouteImport } from './routes/orders/_index'
 import { Route as OrdersIdRouteImport } from './routes/orders/$id'
 import { Route as DevicesAlertsRouteImport } from './routes/devices/alerts'
@@ -30,11 +29,6 @@ const DashboardRoute = DashboardRouteImport.update({
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const QualityIndexRoute = QualityIndexRouteImport.update({
-  id: '/quality/_index',
-  path: '/quality',
   getParentRoute: () => rootRouteImport,
 } as any)
 const OrdersIndexRoute = OrdersIndexRouteImport.update({
@@ -60,7 +54,6 @@ export interface FileRoutesByFullPath {
   '/devices/alerts': typeof DevicesAlertsRoute
   '/orders/$id': typeof OrdersIdRoute
   '/orders': typeof OrdersIndexRoute
-  '/quality': typeof QualityIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -69,7 +62,6 @@ export interface FileRoutesByTo {
   '/devices/alerts': typeof DevicesAlertsRoute
   '/orders/$id': typeof OrdersIdRoute
   '/orders': typeof OrdersIndexRoute
-  '/quality': typeof QualityIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -79,7 +71,6 @@ export interface FileRoutesById {
   '/devices/alerts': typeof DevicesAlertsRoute
   '/orders/$id': typeof OrdersIdRoute
   '/orders/_index': typeof OrdersIndexRoute
-  '/quality/_index': typeof QualityIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -90,7 +81,6 @@ export interface FileRouteTypes {
     | '/devices/alerts'
     | '/orders/$id'
     | '/orders'
-    | '/quality'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -99,7 +89,6 @@ export interface FileRouteTypes {
     | '/devices/alerts'
     | '/orders/$id'
     | '/orders'
-    | '/quality'
   id:
     | '__root__'
     | '/'
@@ -108,7 +97,6 @@ export interface FileRouteTypes {
     | '/devices/alerts'
     | '/orders/$id'
     | '/orders/_index'
-    | '/quality/_index'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -117,7 +105,6 @@ export interface RootRouteChildren {
   DevicesRoute: typeof DevicesRouteWithChildren
   OrdersIdRoute: typeof OrdersIdRoute
   OrdersIndexRoute: typeof OrdersIndexRoute
-  QualityIndexRoute: typeof QualityIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -141,13 +128,6 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/quality/_index': {
-      id: '/quality/_index'
-      path: '/quality'
-      fullPath: '/quality'
-      preLoaderRoute: typeof QualityIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/orders/_index': {
@@ -191,7 +171,6 @@ const rootRouteChildren: RootRouteChildren = {
   DevicesRoute: DevicesRouteWithChildren,
   OrdersIdRoute: OrdersIdRoute,
   OrdersIndexRoute: OrdersIndexRoute,
-  QualityIndexRoute: QualityIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

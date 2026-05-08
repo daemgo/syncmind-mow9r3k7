@@ -90,6 +90,27 @@ export const costSummary = [
   { id: "3", orderNo: "ORD-20260504-005", customerName: "哈尔斯", electricityCost: 1200, targetCost: 1800, gasCost: 520, laborCost: 900, totalCost: 4420, revenue: 22000, profitMargin: 79.91 },
 ];
 
+// 客户列表
+export const customers = [
+  { value: "ikea", label: "宜家" },
+  { value: "supor", label: "苏泊尔" },
+  { value: "walmart", label: "沃尔玛" },
+  { value: "hm", label: "H&M" },
+  { value: "qianjiang", label: "钱江摩托" },
+  { value: "haers", label: "哈尔斯" },
+  { value: "geely", label: "吉利汽车" },
+  { value: "cf_moto", label: "春风动力" },
+];
+
+// 材质列表
+export const materials = [
+  { value: "stainless_steel", label: "不锈钢" },
+  { value: "iron", label: "铁" },
+  { value: "copper", label: "铜" },
+  { value: "aluminum", label: "铝" },
+  { value: "zinc_alloy", label: "锌合金" },
+];
+
 // 看板统计
 export const dashboardStats = {
   todayBatches: 8,

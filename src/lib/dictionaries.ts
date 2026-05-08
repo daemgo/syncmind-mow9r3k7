@@ -51,12 +51,12 @@ export const dictMaterial = {
   zinc_alloy: { label: "锌合金", color: "blue" },
 };
 
-export const dictCoatingColor = {
-  ti_n_gold: { label: "钛金", color: "gold" },
-  ti_n_blue: { label: "钛蓝", color: "blue" },
-  ti_n_black: { label: "钛黑", color: "black" },
-  ti_n_rose: { label: "玫瑰金", color: "pink" },
-  ti_n_chrome: { label: "铬色", color: "silver" },
+export const dictCoatingColor: Record<string, { label: string; color: string; bgColor?: string }> = {
+  ti_n_gold: { label: "钛金", color: "#b8860b", bgColor: "#fef3c7" },
+  ti_n_blue: { label: "钛蓝", color: "#1e40af", bgColor: "#dbeafe" },
+  ti_n_black: { label: "钛黑", color: "#1f2937", bgColor: "#e5e7eb" },
+  ti_n_rose: { label: "玫瑰金", color: "#be185d", bgColor: "#fce7f3" },
+  ti_n_chrome: { label: "铬色", color: "#6b7280", bgColor: "#f3f4f6" },
 };
 
 export const dictStockStatus = {
