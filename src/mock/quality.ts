@@ -1,0 +1,143 @@
+// Quality and batch mock data
+
+import type { Batch, QualityReport, SpcAlert, Inspection } from "@/types/quality"
+
+export const batchMock: Batch[] = [
+  {
+    id: "1",
+    batchNo: "BATCH-20260508-001",
+    orderNo: "ORD-20260508-001",
+    customerName: "宜家",
+    productSpec: "不锈钢餐具",
+    coatingColor: "ti_n_gold",
+    filmThickness: 3.05,
+    adhesion: "1级",
+    productionTime: "2026-05-08 08:30",
+    qualityStatus: "pass",
+    deviceCode: "COAT-001",
+  },
+  {
+    id: "2",
+    batchNo: "BATCH-20260508-002",
+    orderNo: "ORD-20260508-001",
+    customerName: "宜家",
+    productSpec: "不锈钢餐具",
+    coatingColor: "ti_n_gold",
+    filmThickness: 2.98,
+    adhesion: "1级",
+    productionTime: "2026-05-08 10:15",
+    qualityStatus: "pass",
+    deviceCode: "COAT-001",
+  },
+  {
+    id: "3",
+    batchNo: "BATCH-20260507-001",
+    orderNo: "ORD-20260507-002",
+    customerName: "苏泊尔",
+    productSpec: "压力锅内胆",
+    coatingColor: "ti_n_black",
+    filmThickness: 2.52,
+    adhesion: "1级",
+    productionTime: "2026-05-07 14:00",
+    qualityStatus: "pass",
+    deviceCode: "COAT-004",
+  },
+  {
+    id: "4",
+    batchNo: "BATCH-20260507-002",
+    orderNo: "ORD-20260507-002",
+    customerName: "苏泊尔",
+    productSpec: "压力锅内胆",
+    coatingColor: "ti_n_black",
+    filmThickness: 2.48,
+    adhesion: "2级",
+    productionTime: "2026-05-07 16:30",
+    qualityStatus: "rework",
+    deviceCode: "COAT-004",
+  },
+  {
+    id: "5",
+    batchNo: "BATCH-20260505-001",
+    orderNo: "ORD-20260504-005",
+    customerName: "哈尔斯",
+    productSpec: "保温杯外壳",
+    coatingColor: "ti_n_rose",
+    filmThickness: 2.55,
+    adhesion: "1级",
+    productionTime: "2026-05-05 09:00",
+    qualityStatus: "pass",
+    deviceCode: "COAT-001",
+  },
+]
+
+export const qualityReportMock: QualityReport[] = [
+  {
+    id: "1",
+    reportNo: "QR-20260508-001",
+    templateName: "宜家标准",
+    batchNo: "BATCH-20260508-001",
+    customerName: "宜家",
+    generatedAt: "2026-05-08 12:00",
+    createdBy: "张主管",
+  },
+  {
+    id: "2",
+    reportNo: "QR-20260507-001",
+    templateName: "苏泊尔标准",
+    batchNo: "BATCH-20260507-001",
+    customerName: "苏泊尔",
+    generatedAt: "2026-05-07 18:30",
+    createdBy: "张主管",
+  },
+]
+
+export const spcAlertMock: SpcAlert[] = [
+  {
+    id: "1",
+    triggerTime: "2026-05-08 09:15",
+    paramName: "真空度",
+    actualValue: 3.2e-3,
+    upperLimit: 3.0e-3,
+    lowerLimit: 1.0e-3,
+    deviationType: "upper_violation",
+  },
+  {
+    id: "2",
+    triggerTime: "2026-05-08 08:45",
+    paramName: "温度",
+    actualValue: 285,
+    upperLimit: 280,
+    lowerLimit: 260,
+    deviationType: "upper_violation",
+  },
+  {
+    id: "3",
+    triggerTime: "2026-05-07 16:30",
+    paramName: "功率",
+    actualValue: 8.2,
+    upperLimit: 9.0,
+    lowerLimit: 7.0,
+    deviationType: "trend_alert",
+  },
+]
+
+export const inspectionMock: Inspection[] = [
+  {
+    id: "1",
+    inspectionNo: "INS-20260508-001",
+    batchNo: "BATCH-20260508-002",
+    inspectionType: "first_piece",
+    result: "pass",
+    inspector: "李师傅",
+    inspectionTime: "2026-05-08 10:30",
+  },
+  {
+    id: "2",
+    inspectionNo: "INS-20260507-001",
+    batchNo: "BATCH-20260507-002",
+    inspectionType: "patrol",
+    result: "fail",
+    inspector: "李师傅",
+    inspectionTime: "2026-05-07 16:45",
+  },
+]
