@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>质量报告Demo - 国彩真空</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Microsoft YaHei', sans-serif;
+            background: #f5f7fa;
+            color: #333;
+        }
+        
+        /* 顶部导航 */
+        .header {
+            background: linear-gradient(135deg, #1a56db 0%, #4338ca 100%);
+            color: white;
+            padding: 16px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 8px rgba(26,86,219,0.3);
+        }
+        .header-brand { font-size: 18px; font-weight: 600; }
+        .header-company { font-size: 14px; opacity: 0.9; }
+        .header-user { font-size: 13px; opacity: 0.8; }
+        
+        /* 页面布局 */
+        .container { display: flex; min-height: calc(100vh - 60px); }
+        
+        /* 左侧菜单 */
+        .sidebar {
+            width: 200px;
+            background: white;
+            border-right: 1px solid #e5e7eb;
+            padding: 16px 0;
+        }
+        .menu-item {
+            padding: 12px 20px;
+            color: #6b7280;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+            transition: all 0.2s;
+        }
+        .menu-item:hover { background: #f3f4f6; color: #1a56db; }
+        .menu-item.active { 
+            background: #eff6ff; 
+            color: #1a56db;
+            border-left: 3px solid #1a56db;
+            font-weight: 500;
+        }
+        .menu-item .icon { font-size: 18px; }
+        
+        /* 主内容区 */
+        .main {
+            flex: 1;
+            padding: 24px;
+        }
+        
+        /* 页面标题 */
+        .page-title {
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .page-title .tag {
+            font-size: 12px;
+            background: #dcfce7;
+            color: #166534;
+            padding: 4px 10px;
+            border-radius: 12px;
+        }
+        
+        /* 搜索筛选区 */
+        .filter-bar {
+            background: white;
+            border-radius: 12px;
+            padding: 16px 20px;
+            margin-bottom: 20px;
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            align-items: center;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+        .filter-item { display: flex; flex-direction: column; gap: 4px; }
+        .filter-item label { font-size: 12px; color: #6b7280; }
+        .filter-item select, .filter-item input {
+            padding: 8px 12px;
+            border: 1px solid #e5e7eb;
+            border-radius: 6px;
+            font-size: 14px;
+            min-width: 140px;
+        }
+        .filter-item select:focus, .filter-item input:focus {
+            outline: none;
+            border-color: #1a56db;
+            box-shadow: 0 0 0 3px rgba(26,86,219,0.1);
+        }
+        .btn {
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 14px;
+            cursor: pointer;
+            border: none;
+            transition: all 0.2s;
+        }
+        .btn-primary {
+            background: #1a56db;
+            color: white;
+        }
+        .btn-primary:hover { background: #1e40af; }
+        .btn-outline {
+            background: white;
+            border: 1px solid #e5e7eb;
+            color: #374151;
+        }
+        .btn-outline:hover { background: #f9fafb; }
+        .btn-success {
+            background: #16a34a;
+            color: white;
+        }
+        .btn-success:hover { background: #15803d; }
+        
+        /* 数据卡片 */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+        .stat-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+        .stat-card .label { font-size: 13px; color: #6b7280; margin-bottom: 8px; }
+        .stat-card .value { font-size: 28px; font-weight: 700; }
+        .stat-card .value.green { color: #16a34a; }
+        .stat-card .value.blue { color: #1a56db; }
+        .stat-card .value.orange { color: #ea580c; }
+        .stat-card .value.red { color: #dc2626; }
+        .stat-card .sub { font-size: 12px; color: #9ca3af; margin-top: 4px; }
+        
+        /* 表格 */
+        .table-container {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+        .table-header {
+            padding: 16px 20px;
+            border-bottom: 1px solid #e5e7eb;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .table-title { font-weight: 600; font-size: 15px; }
+        .table-actions { display: flex; gap: 8px; }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { padding: 14px 16px; text-align: left; font-size: 14px; }
+        th { background: #f9fafb; font-weight: 500; color: #6b7280; border-bottom: 1px solid #e5e7eb; }
+        td { border-bottom: 1px solid #f3f4f6; }
+        tr:hover td { background: #f9fafb; }
+        .badge {
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        .badge-success { background: #dcfce7; color: #166534; }
+        .badge-warning { background: #fef3c7; color: #92400e; }
+        .badge-error { background: #fee2e2; color: #991b1b; }
+        .badge-info { background: #dbeafe; color: #1e40af; }
+        .action-link { color: #1a56db; cursor: pointer; text-decoration: none; }
+        .action-link:hover { text-decoration: underline; }
+        
+        /* 分页 */
+        .pagination {
+            padding: 16px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #e5e7eb;
+        }
+        .pagination-info { font-size: 13px; color: #6b7280; }
+        .pagination-buttons { display: flex; gap: 4px; }
+        .page-btn {
+            width: 32px;
+            height: 32px;
+            border: 1px solid #e5e7eb;
+            background: white;
+            border-radius: 6px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+        }
+        .page-btn:hover { background: #f3f4f6; }
+        .page-btn.active { background: #1a56db; color: white; border-color: #1a56db; }
+        
+        /* 报告预览弹窗 */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+        .modal {
+            background: white;
+            border-radius: 16px;
+            width: 900px;
+            max-height: 90vh;
+            overflow: hidden;
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
+        }
+        .modal-header {
+            padding: 20px 24px;
+            background: #f9fafb;
+            border-bottom: 1px solid #e5e7eb;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .modal-title { font-size: 18px; font-weight: 600; }
+        .modal-close { 
+            width: 32px; 
+            height: 32px; 
+            border-radius: 6px; 
+            border: none; 
+            background: #e5e7eb;
+            cursor: pointer;
+            font-size: 18px;
+        }
+        .modal-close:hover { background: #d1d5db; }
+        .modal-body {
+            padding: 24px;
+            max-height: calc(90vh - 140px);
+            overflow-y: auto;
+        }
+        .modal-footer {
+            padding: 16px 24px;
+            border-top: 1px solid #e5e7eb;
+            display: flex;
+            justify-content: flex-end;
+            gap: 12px;
+        }
+        
+        /* 报告样式 */
+        .report {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 32px;
+        }
+        .report-header {
+            text-align: center;
+            margin-bottom: 24px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #1a56db;
+        }
+        .report-title { font-size: 24px; font-weight: 700; color: #1a56db; margin-bottom: 8px; }
+        .report-subtitle { font-size: 14px; color: #6b7280; }
+        .report-id { font-size: 13px; color: #9ca3af; margin-top: 8px; }
+        
+        .report-section {
+            margin-bottom: 24px;
+        }
+        .report-section-title {
+            font-size: 15px;
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        .report-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+        .report-table th, .report-table td {
+            padding: 10px 12px;
+            border: 1px solid #e5e7eb;
+            text-align: left;
+        }
+        .report-table th { background: #f3f4f6; font-weight: 500; color: #374151; }
+        .report-table td { color: #4b5563; }
+        
+        .report-meta {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+        .meta-item { }
+        .meta-label { font-size: 12px; color: #6b7280; margin-bottom: 4px; }
+        .meta-value { font-size: 14px; font-weight: 500; color: #111827; }
+        
+        .result-pass { color: #16a34a; font-weight: 500; }
+        .result-fail { color: #dc2626; font-weight: 500; }
+        
+        .report-footer {
+            margin-top: 32px;
+            padding-top: 20px;
+            border-top: 1px solid #e5e7eb;
+            display: flex;
+            justify-content: space-between;
+            font-size: 13px;
+            color: #6b7280;
+        }
+        .signature { text-align: center; }
+        .signature-line { 
+            margin-top: 40px; 
+            border-top: 1px solid #374151;
+            width: 150px;
+            display: inline-block;
+        }
+        
+        /* 演示提示 */
+        .demo-tip {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border: 1px solid #fbbf24;
+            border-radius: 8px;
+            padding: 12px 16px;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 13px;
+        }
+        .demo-tip .icon { font-size: 18px; }
+        
+        /* 响应式 */
+        @media (max-width: 1024px) {
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .sidebar { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <!-- 顶部导航 -->
+    <div class="header">
+        <div>
+            <div class="header-brand">syncMind 智能生产管理系统</div>
+            <div class="header-company">温州市国彩真空科技有限公司</div>
+        </div>
+        <div class="header-user">👤 李进汉（管理员）</div>
+    </div>
+    
+    <div class="container">
+        <!-- 左侧菜单 -->
+        <div class="sidebar">
+            <div class="menu-item"><span class="icon">📊</span>生产看板</div>
+            <div class="menu-item"><span class="icon">📋</span>订单管理</div>
+            <div class="menu-item active"><span class="icon">📑</span>质量报告</div>
+            <div class="menu-item"><span class="icon">🔧</span>设备监控</div>
+            <div class="menu-item"><span class="icon">📦</span>批次管理</div>
+            <div class="menu-item"><span class="icon">💰</span>成本核算</div>
+            <div class="menu-item"><span class="icon">📚</span>工艺知识库</div>
+            <div class="menu-item"><span class="icon">⚙️</span>系统设置</div>
+        </div>
+        
+        <!-- 主内容 -->
+        <div class="main">
+            <div class="page-title">
+                质量报告管理
+                <span class="tag">已接入 3 台设备</span>
+            </div>
+            
+            <!-- 演示提示 -->
+            <div class="demo-tip">
+                <span class="icon">💡</span>
+                <strong>Demo演示说明：</strong>以下为质量报告功能演示，实际数据已脱敏处理。点击「查看报告」可预览完整报告，点击「导出PDF」下载。
+            </div>
+            
+            <!-- 筛选条件 -->
+            <div class="filter-bar">
+                <div class="filter-item">
+                    <label>客户</label>
+                    <select>
+                        <option>全部客户</option>
+                        <option>宜家 IKEA</option>
+                        <option>苏泊尔</option>
+                        <option>吉利汽车</option>
+                    </select>
+                </div>
+                <div class="filter-item">
+                    <label>报告类型</label>
+                    <select>
+                        <option>全部类型</option>
+                        <option>来料检验</option>
+                        <option>过程检验</option>
+                        <option>成品检验</option>
+                    </select>
+                </div>
+                <div class="filter-item">
+                    <label>订单号</label>
+                    <input type="text" placeholder="输入订单号">
+                </div>
+                <div class="filter-item">
+                    <label>日期范围</label>
+                    <input type="date" value="2026-05-01">
+                </div>
+                <button class="btn btn-primary">🔍 查询</button>
+                <button class="btn btn-outline">🔄 重置</button>
+            </div>
+            
+            <!-- 统计卡片 -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="label">本月报告数</div>
+                    <div class="value blue">47</div>
+                    <div class="sub">较上月 +12</div>
+                </div>
+                <div class="stat-card">
+                    <div class="label">合格率</div>
+                    <div class="value green">98.5%</div>
+                    <div class="sub">本月批次</div>
+                </div>
+                <div class="stat-card">
+                    <div class="label">待审核</div>
+                    <div class="value orange">5</div>
+                    <div class="sub">需及时处理</div>
+                </div>
+                <div class="stat-card">
+                    <div class="label">导出次数</div>
+                    <div class="value">89</div>
+                    <div class="sub">本月累计</div>
+                </div>
+            </div>
+            
+            <!-- 数据表格 -->
+            <div class="table-container">
+                <div class="table-header">
+                    <div class="table-title">📋 质量报告列表</div>
+                    <div class="table-actions">
+                        <button class="btn btn-success" onclick="showReport()">📄 新建报告</button>
+                        <button class="btn btn-outline">📥 批量导出</button>
+                    </div>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>报告编号</th>
+                            <th>客户</th>
+                            <th>订单号</th>
+                            <th>批次号</th>
+                            <th>产品规格</th>
+                            <th>检验日期</th>
+                            <th>检验结果</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>QR-20260508-001</td>
+                            <td><span class="badge badge-info">宜家 IKEA</span></td>
+                            <td>WO-2026-0428</td>
+                            <td>B-2026-0501</td>
+                            <td>镀金-不锈钢-10μm</td>
+                            <td>2026-05-08</td>
+                            <td><span class="badge badge-success">✓ 合格</span></td>
+                            <td><a class="action-link" onclick="showReport()">查看</a> | <a class="action-link">导出</a></td>
+                        </tr>
+                        <tr>
+                            <td>QR-20260507-003</td>
+                            <td><span class="badge badge-info">苏泊尔</span></td>
+                            <td>WO-2026-0415</td>
+                            <td>B-2026-0428</td>
+                            <td>氮化钛-铜件-5μm</td>
+                            <td>2026-05-07</td>
+                            <td><span class="badge badge-success">✓ 合格</span></td>
+                            <td><a class="action-link" onclick="showReport()">查看</a> | <a class="action-link">导出</a></td>
+                        </tr>
+                        <tr>
+                            <td>QR-20260506-002</td>
+                            <td><span class="badge badge-warning">吉利汽车</span></td>
+                            <td>WO-2026-0402</td>
+                            <td>B-2026-0425</td>
+                            <td>镀铬-铝合金-8μm</td>
+                            <td>2026-05-06</td>
+                            <td><span class="badge badge-warning">⏳ 待审</span></td>
+                            <td><a class="action-link" onclick="showReport()">查看</a> | <a class="action-link">导出</a></td>
+                        </tr>
+                        <tr>
+                            <td>QR-20260505-001</td>
+                            <td><span class="badge badge-info">宜家 IKEA</span></td>
+                            <td>WO-2026-0421</td>
+                            <td>B-2026-0422</td>
+                            <td>玫瑰金-锌合金-6μm</td>
+                            <td>2026-05-05</td>
+                            <td><span class="badge badge-success">✓ 合格</span></td>
+                            <td><a class="action-link" onclick="showReport()">查看</a> | <a class="action-link">导出</a></td>
+                        </tr>
+                        <tr>
+                            <td>QR-20260503-002</td>
+                            <td><span class="badge badge-error">沃尔玛</span></td>
+                            <td>WO-2026-0398</td>
+                            <td>B-2026-0418</td>
+                            <td>镀银-铁件-12μm</td>
+                            <td>2026-05-03</td>
+                            <td><span class="badge badge-error">✗ 不合格</span></td>
+                            <td><a class="action-link" onclick="showReport()">查看</a> | <a class="action-link">导出</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="pagination">
+                    <div class="pagination-info">显示 1-5 条，共 47 条记录</div>
+                    <div class="pagination-buttons">
+                        <button class="page-btn">«</button>
+                        <button class="page-btn">‹</button>
+                        <button class="page-btn active">1</button>
+                        <button class="page-btn">2</button>
+                        <button class="page-btn">3</button>
+                        <button class="page-btn">...</button>
+                        <button class="page-btn">9</button>
+                        <button class="page-btn">›</button>
+                        <button class="page-btn">»</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 报告预览弹窗 -->
+    <div class="modal-overlay" id="reportModal" style="display: none;">
+        <div class="modal">
+            <div class="modal-header">
+                <div class="modal-title">📄 质量检验报告预览</div>
+                <button class="modal-close" onclick="closeReport()">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="report">
+                    <!-- 报告头部 -->
+                    <div class="report-header">
+                        <div class="report-title">质量检验报告</div>
+                        <div class="report-subtitle">Quality Inspection Report - PVD Coating</div>
+                        <div class="report-id">报告编号：QR-20260508-001 | 版本：V1.0</div>
+                    </div>
+                    
+                    <!-- 基本信息 -->
+                    <div class="report-section">
+                        <div class="report-section-title">📋 基本信息</div>
+                        <div class="report-meta">
+                            <div class="meta-item">
+                                <div class="meta-label">客户名称</div>
+                                <div class="meta-value">宜家 IKEA</div>
+                            </div>
+                            <div class="meta-item">
+                                <div class="meta-label">订单号</div>
+                                <div class="meta-value">WO-2026-0428</div>
+                            </div>
+                            <div class="meta-item">
+                                <div class="meta-label">批次号</div>
+                                <div class="meta-value">B-2026-0501</div>
+                            </div>
+                            <div class="meta-item">
+                                <div class="meta-label">产品规格</div>
+                                <div class="meta-value">镀金不锈钢 - 10μm</div>
+                            </div>
+                            <div class="meta-item">
+                                <div class="meta-label">检验日期</div>
+                                <div class="meta-value">2026-05-08</div>
+                            </div>
+                            <div class="meta-item">
+                                <div class="meta-label">检验员</div>
+                                <div class="meta-value">张师傅</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 工艺参数 -->
+                    <div class="report-section">
+                        <div class="report-section-title">⚙️ 工艺参数记录</div>
+                        <table class="report-table">
+                            <tr>
+                                <th style="width:25%">参数名称</th>
+                                <th style="width:25%">设定值</th>
+                                <th style="width:25%">实际值</th>
+                                <th style="width:25%">判定</th>
+                            </tr>
+                            <tr>
+                                <td>真空度 (Pa)</td>
+                                <td>5.0×10⁻³</td>
+                                <td>4.8×10⁻³</td>
+                                <td class="result-pass">✓ 合格</td>
+                            </tr>
+                            <tr>
+                                <td>基体温度 (°C)</td>
+                                <td>200</td>
+                                <td>195</td>
+                                <td class="result-pass">✓ 合格</td>
+                            </tr>
+                            <tr>
+                                <td>沉积功率 (kW)</td>
+                                <td>8.0</td>
+                                <td>8.2</td>
+                                <td class="result-pass">✓ 合格</td>
+                            </tr>
+                            <tr>
+                                <td>沉积时间 (min)</td>
+                                <td>45</td>
+                                <td>46</td>
+                                <td class="result-pass">✓ 合格</td>
+                            </tr>
+                            <tr>
+                                <td>氩气流量 (sccm)</td>
+                                <td>200</td>
+                                <td>198</td>
+                                <td class="result-pass">✓ 合格</td>
+                            </tr>
+                        </table>
+                    </div>
+                    
+                    <!-- 质量检测 -->
+                    <div class="report-section">
+                        <div class="report-section-title">🔬 质量检测结果</div>
+                        <table class="report-table">
+                            <tr>
+                                <th style="width:20%">检测项目</th>
+                                <th style="width:20%">检测方法</th>
+                                <th style="width:20%">标准要求</th>
+                                <th style="width:20%">实测值</th>
+                                <th style="width:20%">判定</th>
+                            </tr>
+                            <tr>
+                                <td>膜厚测试</td>
+                                <td>X射线测厚仪</td>
+                                <td>10.0 ± 0.5 μm</td>
+                                <td>10.2 μm</td>
+                                <td class="result-pass">✓ 合格</td>
+                            </tr>
+                            <tr>
+                                <td>附着力测试</td>
+                                <td>百格法 (ISO 2409)</td>
+                                <td>0级</td>
+                                <td>0级</td>
+                                <td class="result-pass">✓ 合格</td>
+                            </tr>
+                            <tr>
+                                <td>盐雾测试</td>
+                                <td>中性盐雾 48h</td>
+                                <td>无锈蚀</td>
+                                <td>无锈蚀</td>
+                                <td class="result-pass">✓ 合格</td>
+                            </tr>
+                            <tr>
+                                <td>硬度测试</td>
+                                <td>维氏硬度计</td>
+                                <td>≥ 1000 HV</td>
+                                <td>1180 HV</td>
+                                <td class="result-pass">✓ 合格</td>
+                            </tr>
+                            <tr>
+                                <td>颜色一致性</td>
+                                <td>色差仪</td>
+                                <td>ΔE ≤ 1.0</td>
+                                <td>ΔE = 0.6</td>
+                                <td class="result-pass">✓ 合格</td>
+                            </tr>
+                        </table>
+                    </div>
+                    
+                    <!-- 设备信息 -->
+                    <div class="report-section">
+                        <div class="report-section-title">🔧 设备信息</div>
+                        <table class="report-table">
+                            <tr>
+                                <th style="width:25%">设备编号</th>
+                                <th style="width:25%">设备类型</th>
+                                <th style="width:25%">靶材批次</th>
+                                <th style="width:25%">操作员</th>
+                            </tr>
+                            <tr>
+                                <td>GC-PVD-001</td>
+                                <td>磁控溅射镀膜机</td>
+                                <td>Ti-Au-20260415</td>
+                                <td>李强</td>
+                            </tr>
+                        </table>
+                    </div>
+                    
+                    <!-- 检验结论 -->
+                    <div class="report-section">
+                        <div class="report-section-title">📝 检验结论</div>
+                        <div style="background: #f0fdf4; border: 1px solid #86efac; border-radius: 6px; padding: 16px; text-align: center;">
+                            <div style="font-size: 18px; font-weight: 600; color: #166534; margin-bottom: 8px;">
+                                ✓ 本批次产品检验合格
+                            </div>
+                            <div style="font-size: 14px; color: #166534;">
+                                符合宜家 IKEA 供应商质量标准 (IWAY 5.1.1)
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 签章区 -->
+                    <div class="report-footer">
+                        <div class="signature">
+                            <div>检验员：张师傅</div>
+                            <div class="signature-line"></div>
+                        </div>
+                        <div class="signature">
+                            <div>审核：总工程师</div>
+                            <div class="signature-line"></div>
+                        </div>
+                        <div class="signature">
+                            <div>批准：总经理</div>
+                            <div class="signature-line"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" onclick="closeReport()">关闭</button>
+                <button class="btn btn-success">📥 导出 PDF</button>
+                <button class="btn btn-primary">📤 发送给客户</button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function showReport() {
+            document.getElementById('reportModal').style.display = 'flex';
+        }
+        
+        function closeReport() {
+            document.getElementById('reportModal').style.display = 'none';
+        }
+        
+        // 点击遮罩关闭
+        document.getElementById('reportModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeReport();
+            }
+        });
+    </script>
+</body>
+</html>
